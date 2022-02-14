@@ -11,41 +11,42 @@ namespace Cards
       
         static void Main(string[] args)
         {
-            // Запрос на построение колоды
-
-            // Перетасовка с использованием InterleaveSequenceWith<T>
-
-            var startingDeck = from s in Suits() 
-                               from r in Ranks()
-                               select new { Suit = s, Rank = r };
+            var startingDeck = (from s in Suits().LogQuery("Suit Generation")
+                                from r in Ranks().LogQuery("Rank Generation")
+                                select new { Suit = s, Rank = r }).LogQuery("Starting Deck");
 
             foreach (var c in startingDeck)
             {
                 Console.WriteLine(c);
             }
 
-            var top = startingDeck.Take(26);
-            var bottom = startingDeck.Skip(26);
-            var shuffle = top.InterleaveSequenceWith(bottom);
-
-            foreach (var c in shuffle)
-            {
-                Console.WriteLine(c);
-            }
+            Console.WriteLine();
             var times = 0;
-            // We can re-use the shuffle variable from earlier, or you can make a new one
-            shuffle = startingDeck;
+            var shuffle = startingDeck;
+
             do
             {
-                shuffle = shuffle.Skip(26).InterleaveSequenceWith(shuffle.Take(26));
+                // Out shuffle
+                /*
+                shuffle = shuffle.Take(26)
+                    .LogQuery("Top Half")
+                    .InterleaveSequenceWith(shuffle.Skip(26)
+                    .LogQuery("Bottom Half"))
+                    .LogQuery("Shuffle");
+                */
 
-                foreach (var card in shuffle)
+                // In shuffle
+                shuffle = shuffle.Skip(26).LogQuery("Bottom Half")
+                        .InterleaveSequenceWith(shuffle.Take(26).LogQuery("Top Half"))
+                        .LogQuery("Shuffle");
+
+                foreach (var c in shuffle)
                 {
-                    Console.WriteLine(card);
+                    Console.WriteLine(c);
                 }
-                Console.WriteLine();
-                times++;
 
+                times++;
+                Console.WriteLine(times);
             } while (!startingDeck.SequenceEquals(shuffle));
 
             Console.WriteLine(times);
