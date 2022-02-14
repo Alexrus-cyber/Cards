@@ -20,6 +20,11 @@ namespace Cards
             {
                 Console.WriteLine(card);
             }
+
+            var top = startingDeck.Take(26);
+            var bottom = startingDeck.Skip(26);
+
+            Console.ReadKey();
         }
         static IEnumerable<string> Suits()
         {
