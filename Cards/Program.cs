@@ -11,7 +11,11 @@ namespace Cards
       
         static void Main(string[] args)
         {
-            var startingDeck = from s in Suits()
+            // Запрос на построение колоды
+
+            // Перетасовка с использованием InterleaveSequenceWith<T>
+
+            var startingDeck = from s in Suits() 
                                from r in Ranks()
                                select new { Suit = s, Rank = r };
 
@@ -28,6 +32,23 @@ namespace Cards
             {
                 Console.WriteLine(c);
             }
+            var times = 0;
+            // We can re-use the shuffle variable from earlier, or you can make a new one
+            shuffle = startingDeck;
+            do
+            {
+                shuffle = shuffle.Skip(26).InterleaveSequenceWith(shuffle.Take(26));
+
+                foreach (var card in shuffle)
+                {
+                    Console.WriteLine(card);
+                }
+                Console.WriteLine();
+                times++;
+
+            } while (!startingDeck.SequenceEquals(shuffle));
+
+            Console.WriteLine(times);
 
             Console.ReadKey();
         }
