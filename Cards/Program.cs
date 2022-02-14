@@ -8,6 +8,11 @@ namespace Cards
 {
     class Program
     {
+      
+        static void Main(string[] args)
+        {
+            
+        }
         static IEnumerable<string> Suits()
         {
             yield return "clubs";
@@ -31,11 +36,6 @@ namespace Cards
             yield return "queen";
             yield return "king";
             yield return "ace";
-        }
-
-        static void Main(string[] args)
-        {
-            
         }
     }
 }
