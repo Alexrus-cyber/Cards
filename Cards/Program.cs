@@ -11,18 +11,23 @@ namespace Cards
       
         static void Main(string[] args)
         {
-            var startingDeck = from s in Suits() // откуда берем из метода IEnumerble
-                               from r in Ranks() // откуда берем из метода IEnumerble
+            var startingDeck = from s in Suits()
+                               from r in Ranks()
                                select new { Suit = s, Rank = r };
 
-            
-            foreach (var card in startingDeck) //Отобразить каждую карту, которую мы сгенерировали и поместили в начальную колоду, в консоли.
+            foreach (var c in startingDeck)
             {
-                Console.WriteLine(card);
+                Console.WriteLine(c);
             }
 
             var top = startingDeck.Take(26);
             var bottom = startingDeck.Skip(26);
+            var shuffle = top.InterleaveSequenceWith(bottom);
+
+            foreach (var c in shuffle)
+            {
+                Console.WriteLine(c);
+            }
 
             Console.ReadKey();
         }
