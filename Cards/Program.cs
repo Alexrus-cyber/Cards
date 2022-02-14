@@ -11,7 +11,15 @@ namespace Cards
       
         static void Main(string[] args)
         {
+            var startingDeck = from s in Suits() // откуда берем из метода IEnumerble
+                               from r in Ranks() // откуда берем из метода IEnumerble
+                               select new { Suit = s, Rank = r };
+
             
+            foreach (var card in startingDeck) //Отобразить каждую карту, которую мы сгенерировали и поместили в начальную колоду, в консоли.
+            {
+                Console.WriteLine(card);
+            }
         }
         static IEnumerable<string> Suits()
         {

@@ -1,0 +1,7 @@
+C:\Users\tappy\Documents\GitHub\Cards\Cards\bin\Debug\Cards.exe.config
+C:\Users\tappy\Documents\GitHub\Cards\Cards\bin\Debug\Cards.exe
+C:\Users\tappy\Documents\GitHub\Cards\Cards\bin\Debug\Cards.pdb
+C:\Users\tappy\Documents\GitHub\Cards\Cards\obj\Debug\Cards.csproj.AssemblyReference.cache
+C:\Users\tappy\Documents\GitHub\Cards\Cards\obj\Debug\Cards.csproj.CoreCompileInputs.cache
+C:\Users\tappy\Documents\GitHub\Cards\Cards\obj\Debug\Cards.exe
+C:\Users\tappy\Documents\GitHub\Cards\Cards\obj\Debug\Cards.pdb
